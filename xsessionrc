@@ -1,0 +1,3 @@
+xset -b
+setxkbmap -layout gb -option ctrl:nocaps -option compose:menu
+sh ~/.fehbg &  # set background

@@ -1,0 +1,17 @@
+[user]
+	name = Joseph Weston
+	email = joseph.weston08@gmail.com
+[core]
+	editor = vim
+[merge]
+    tool = vimdiff
+[sendemail]
+    smtpEncryption = tls
+    smtpServer = smtp.gmail.com
+    smtpUser = joseph.weston08@gmail.com
+    smtpServerPort = 587
+[alias]
+  unstage = reset -- HEAD
+  last = log -1 HEAD
+  grep = ls-files | xargs grep
+  wdiff = diff --color-words

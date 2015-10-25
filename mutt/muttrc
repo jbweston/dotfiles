@@ -1,0 +1,51 @@
+# Based on the exemplary work of Pat Brisbin: http://www.pbrisbin.com:8080/
+# and Jason Ryan: http://www.jasonwryan.com/
+
+## directories and commands ##
+set header_cache        = ~/.mutt/cache/headers  # where to store headers
+set message_cachedir    = ~/.mutt/cache/bodies   # where to store bodies
+set certificate_file    = ~/.mutt/certificates   # where to store certs
+
+## main options ##
+set mbox_type           = Maildir                # mailbox type
+set folder              = ~/Mail                 # mailbox location
+set spoolfile           = "+JBW/INBOX"           # default inbox
+
+mailboxes +JBW/INBOX +JBW/INBOX.kwant-gitlab
+mailboxes +GMail/INBOX +GMail/dev.kwant-mailinglist +GMail/family.parentsquash
+
+
+## other config ##
+#source ~/.mutt/colors.muttrc     # source colors file
+source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
+source ~/.mutt/jbw.muttrc        # source as default
+source ~/.mutt/gpg.rc            # use GPG
+
+folder-hook JBW/* source ~/.mutt/jbw.muttrc
+folder-hook GMail/* source ~/.mutt/gmail.muttrc
+
+
+## Bindings in the index view  ##
+bind index gg           first-entry
+bind index G            last-entry
+bind index,pager K            sidebar-prev
+bind index,pager J            sidebar-next
+bind index,pager O            sidebar-open
+macro index gk          "<change-folder> =JBW/INBOX<enter>"   "go to Inbox"
+macro index gj          "<change-folder> =GMail/INBOX<enter>" "go to Gmail inbox"
+bind index -            collapse-thread
+bind index _            collapse-all
+## Bindings in the pager view  ##
+bind pager q            exit
+bind pager /            search
+bind pager <up>         previous-line
+bind pager <down>       next-line
+bind pager k            previous-line
+bind pager j            next-line
+bind pager gg           top
+bind pager G            bottom
+## common bindings ##
+macro index,pager <F5> ":source ~/.mutt/muttrc\n"  "Reload the muttrc"
+bind index,pager R      group-reply
+bind compose p          pgp-menu
+bind attach <return>    view-mailcap

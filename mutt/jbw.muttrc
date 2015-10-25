@@ -1,0 +1,12 @@
+#######################
+# jwr specific options
+#######################
+
+color status     brightwhite  black
+color indicator  brightwhite  black
+
+set from      = "me@josephweston.org"
+set sendmail  = "/usr/bin/msmtp -a jbw"
+set mbox      = "+JBW/archive"
+set record    = "+JBW/INBOX.Sent"
+set postponed = "+JBW/INBOX.Draft"

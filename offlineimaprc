@@ -1,0 +1,40 @@
+[general]
+ui = ttyui
+accounts = GMail, JBW
+pythonfile = ~/.mutt/get_pass.py
+
+[Account GMail]
+localrepository = GMail-Local
+remoterepository = GMail-Remote
+
+[Account JBW]
+localrepository = JBW-Local
+remoterepository = JBW-Remote
+
+[Repository GMail-Local]
+type = Maildir
+localfolders = ~/Mail/GMail
+
+[Repository JBW-Local]
+type = Maildir
+localfolders = ~/Mail/JBW
+
+[Repository GMail-Remote]
+type = Gmail
+ssl = yes
+remoteuser = joseph.weston08@gmail.com
+remotepasseval = get_pass("gmail")
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail', '[Gmail]/Important']
+realdelete = no
+maxconnections = 3
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Repository JBW-Remote]
+type = IMAP
+ssl = yes
+remotehost = burrito.asoshared.com
+remoteuser = me@josephweston.org
+remotepasseval = get_pass("jbw")
+realdelete = no
+maxconnections = 3
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt

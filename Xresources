@@ -1,0 +1,26 @@
+Xft.antialias:           true
+Xft.hinting:             true
+Xft.hintstyle:           3
+
+! colorscheme
+#include ".Xresources.d/solarized_dark"
+
+Xcursor.theme: Orange-Cursor
+
+! urxvt config
+urxvt.font:              xft:inconsolata:pixelsize=15
+urxvt.termName:          rxvt
+urxvt.scrollBar:         false
+urxvt.imLocale:          en_GB.UTF-8
+urxvt.loginShell:        true
+urxvt.saveLines:         512
+urxvt.geometry:          190x70
+urxvt.inheritPixmap:     false
+urxvt.shading:           30
+urxvt.xftAntialias:      true
+urxvt.jumpScroll:        true
+urxvt.tintColor:         white
+urxvt.internalBorder:    0
+urxvt.cursorBlink:       false
+urxvt.urgentOnBell:      true
+urxvt.intensityStyles:   false
