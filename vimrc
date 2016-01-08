@@ -34,6 +34,7 @@ set visualbell
 syntax enable
 " most of the time we are editing HTML k
 au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja 
+au BufRead,BufNewFile *.svg        set filetype=xml
 
 " --Remapping keys--
 " remap <esc> key with `jk` combination
