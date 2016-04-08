@@ -51,3 +51,4 @@ export PS1="${txtrst}\u@${bldcyn}\h ${bldblu}\W ${bldred}\$(parse_git_branch) ${
 export EDITOR=vim
 export TERMINAL=urxvt
 export terminal=urxvt
+export LC_ALL=en_GB.UTF-8
