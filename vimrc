@@ -47,13 +47,14 @@ no ; :
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
+" solarized theme
 let g:solarized_termcolors=16
 set t_Co=16
 set background=dark
 colorscheme solarized
 
 
-"====[ Highlight matches and blink when jumping between matches ]====
+" highlight matches and blink when jumping between matches
 " This rewires n and N to do the highlighing...
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
@@ -71,47 +72,40 @@ function! HLNext (blinktime)
     redraw
 endfunction
 
-"====[ Make trailing whitespace and non-breaking spaces visible ]======
+" make trailing whitespace visible but not too obtrusive
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+exec "set listchars=trail:\uB7,nbsp:~"
+set list
 
-"exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-"exec "set listchars=trail:\uB7,nbsp:~"
-"set list
+" swap v and Ctrl-V; Block mode is more useful than Visual mode
+nnoremap    v   <C-V>
+nnoremap <C-V>     v
 
-
-"====[ Swap v and CTRL-V, because Block mode is more useful that Visual mode "]======
-
-    nnoremap    v   <C-V>
-    nnoremap <C-V>     v
-
-    vnoremap    v   <C-V>
-    vnoremap <C-V>     v
+vnoremap    v   <C-V>
+vnoremap <C-V>     v
 
 
-"====[ Always turn on syntax highlighting for diffs ]=========================
+" syntax highlighting for diffs
+"
+" EITHER select by the file-suffix directly...
+augroup PatchDiffHighlight
+    autocmd!
+    autocmd BufEnter  *.patch,*.rej,*.diff   syntax enable
+augroup END
 
-    " EITHER select by the file-suffix directly...
-    augroup PatchDiffHighlight
-        autocmd!
-        autocmd BufEnter  *.patch,*.rej,*.diff   syntax enable
-    augroup END
-
-    " OR ELSE use the filetype mechanism to select automatically...
-    filetype on
-    augroup PatchDiffHighlight
-        autocmd!
-        autocmd FileType  diff   syntax enable
-    augroup END
+" OR ELSE use the filetype mechanism to select automatically...
+filetype on
+augroup PatchDiffHighlight
+    autocmd!
+    autocmd FileType  diff   syntax enable
+augroup END
 
 
-"====[ Open any file with a pre-existing swapfile in readonly mode "]=========
-
-    augroup NoSimultaneousEdits
-        autocmd!
-        autocmd SwapExists * let v:swapchoice = 'o'
-        "autocmd SwapExists * echomsg ErrorMsg
-        autocmd SwapExists * echo 'Duplicate edit session (readonly)'
-        autocmd SwapExists * echohl None
-        autocmd SwapExists * sleep 2
-    augroup END
-
-    " Also consider the autoswap_mac.vim plugin (but beware its limitations)
+" open file with .swp already existing as readonly
+augroup NoSimultaneousEdits
+    autocmd!
+    autocmd SwapExists * let v:swapchoice = 'o'
+    autocmd SwapExists * echo 'Duplicate edit session (readonly)'
+    autocmd SwapExists * echohl None
+    autocmd SwapExists * sleep 2
+augroup END
