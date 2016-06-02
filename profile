@@ -17,7 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set up ssh-agent
-eval $(keychain --eval 2>/dev/null)
+eval $(keychain --agents gpg,ssh --eval 2>/dev/null)
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then

@@ -12,7 +12,7 @@ set folder              = ~/Mail                 # mailbox location
 set spoolfile           = "+JBW/INBOX"           # default inbox
 
 mailboxes +JBW/INBOX +JBW/INBOX.kwant-gitlab
-mailboxes +GMail/INBOX +GMail/dev.kwant-mailinglist +GMail/family.parentsquash
+mailboxes +GMail/INBOX +GMail/dev.kwant-mailinglist +GMail/family.parents
 
 
 ## other config ##
@@ -20,6 +20,7 @@ mailboxes +GMail/INBOX +GMail/dev.kwant-mailinglist +GMail/family.parentsquash
 source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
 source ~/.mutt/jbw.muttrc        # source as default
 source ~/.mutt/gpg.rc            # use GPG
+source ~/.mutt/sidebar.rc        # configure sidebar
 
 folder-hook JBW/* source ~/.mutt/jbw.muttrc
 folder-hook GMail/* source ~/.mutt/gmail.muttrc
