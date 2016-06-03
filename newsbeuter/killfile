@@ -1,0 +1,2 @@
+ignore-mode display
+ignore-article "https://about.gitlab.com/atom.xml" "title !~ \"Gitlab.*[Rr]eleased\""
