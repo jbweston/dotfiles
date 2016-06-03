@@ -1,0 +1,11 @@
+# interface
+confirm-exit yes
+bind-key k up
+bind-key j down
+bind-key O open-in-browser-and-mark-read
+# browser
+browser firefox
+# colours
+include ~/.newsbeuter/solarized.theme
+# killfile
+include ~/.newsbeuter/killfile
