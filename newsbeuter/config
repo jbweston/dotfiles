@@ -9,3 +9,5 @@ browser firefox
 include ~/.newsbeuter/solarized.theme
 # killfile
 include ~/.newsbeuter/killfile
+# general config
+auto-reload yes

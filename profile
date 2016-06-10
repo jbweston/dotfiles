@@ -23,3 +23,4 @@ eval $(keychain --agents gpg,ssh --eval 2>/dev/null)
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+GTK_IM_MODULE=xim

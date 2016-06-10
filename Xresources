@@ -24,3 +24,4 @@ urxvt.internalBorder:    0
 urxvt.cursorBlink:       false
 urxvt.urgentOnBell:      true
 urxvt.intensityStyles:   false
+urxvt.inputMethod:       xim
