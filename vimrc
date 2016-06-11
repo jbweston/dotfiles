@@ -10,6 +10,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'git://github.com/altercation/vim-colors-solarized.git'
+Plugin 'tpope/vim-speeddating'
+Plugin 'jceb/vim-orgmode'
 Bundle 'lepture/vim-jinja'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
