@@ -32,7 +32,7 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 [Repository JBW-Remote]
 type = IMAP
 ssl = yes
-remotehost = burrito.asoshared.com
+remotehost = mail.webfaction.com
 remoteuser = me@josephweston.org
 remotepasseval = get_pass("jbw")
 realdelete = no
