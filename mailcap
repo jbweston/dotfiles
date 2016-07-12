@@ -1,5 +1,5 @@
 message/rfc822; less %s; edit=${EDITOR-vi} %s; compose=${EDITOR-vi} %s; needsterminal;
-text/html; $HOME/Scripts/vimprobtab %s &; test=test -n "$DISPLAY"; needsterminal;
+text/html; firefox %s
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
 text/calendar; $HOME/Scripts/ical_filter.pl; copiousoutput
 image/*; feh %s
