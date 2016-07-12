@@ -19,3 +19,9 @@ alias tigs='tig status'
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
+
+gpg-get-keys() {
+    keys=$(gpg --list-sigs | grep "not found" | tr -s ' ' |\
+           rev | cut -d' ' -f6 | rev)
+    gpg --keyserver pgp.mit.edu --recv-keys $keys
+}
