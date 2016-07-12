@@ -1,0 +1,29 @@
+#!/bin/bash
+
+root=$1
+
+# check for existence of directory
+if [ -z $root ]
+then
+    (>&2 echo "no oandbackup directory provided")
+    exit 1
+elif [ ! -d $root ]
+then
+    (>&2 echo "directory $root does not exist")
+    exit 1
+fi
+
+# decrypt files
+mkdir decrypted
+for gpg_file in $(find $root -name '*.gpg')
+do
+    mkdir -p decrypted/$(dirname $gpg_file)
+    gpg --no-tty --batch -d $gpg_file > decrypted/${gpg_file/%.gpg/}
+done
+
+# tell oandbackup that the files are not encrypted
+for log_file in $(find $root -name '*.log')
+do
+    mkdir -p decrypted/$(dirname $log_file)
+    sed 's/"isEncrypted": true/"isEncrypted": false/' $log_file > decrypted/$log_file
+done
