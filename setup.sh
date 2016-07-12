@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # create symlinks to all the dotfiles
 
-IGNORE="README.rst setup.sh diff-dotfiles.sh"
+IGNORE="README.rst setup.sh diff-dotfiles.sh scripts config"
 SAFE=0  # set to 1 to simulate deletion
 
 function ask {
@@ -36,7 +36,6 @@ function link {
 }
 
 
-IGNORE="$IGNORE config"
 for file in $(ls $(for f in $IGNORE; do echo "-I $f" ; done))
 do
     to_file="$HOME/.$file"
@@ -49,5 +48,12 @@ for file in $(ls config)
 do
     to_file=$HOME/.config/$file
     from_file=$(pwd)/config/$file
+    link "$from_file" "$to_file"
+done
+
+for file in $(ls scripts)
+do
+    to_file=$HOME/.local/bin/$file
+    from_file=$(pwd)/scripts/$file
     link "$from_file" "$to_file"
 done
