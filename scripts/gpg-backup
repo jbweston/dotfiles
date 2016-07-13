@@ -1,0 +1,170 @@
+#!/bin/bash
+set -e
+umask 077  # make sure only we can read/write files
+
+### usage
+usage=$(cat << EOF
+Usage: gpg-backup ACTION [--gpg-home HOME] KEY_ID
+
+Create backups of the provided PGP key. Requires "dmtx-utils" and "paperkey".
+
+ACTION: create, restore
+--gpg-home HOME   GnuPG home directory containing the keyrings to read/write
+EOF
+)
+
+### utilities
+
+function fail() {
+    echo -e "$1"
+    exit 1
+}
+
+# backup/restore from paperkey text (base16 format)
+function paperkey_txt() {
+    local action=$1
+    local key=$2
+
+    [[ -z $key ]] && fail "no key provided"
+
+    case "$action" in
+        create)
+            cat $sec.key | paperkey --output-type base16 > $sec.txt
+            ;;
+        restore)
+            cat $sec.txt | paperkey --pubring $gpg_home/pubring.gpg | $GPG --import -
+            ;;
+        *)
+            fail "invalid action $action"
+            ;;
+    esac
+}
+
+# backup/restore from paperkey raw format split into several dmtx stored as PNGs
+function paperkey_dmtx() {
+    local action=$1
+    local key=$2
+    local part_prefix=$key.part-
+    local archive=$key.png.parts.tar
+
+    [[ -z $key ]] && fail "no key provided"
+
+    case "$action" in
+        create)
+            cat $key.key | paperkey --output-type raw | split -b 1500 - $part_prefix
+            for key_file in $part_prefix*; do
+                dmtxwrite -e 8 $key_file > $key_file.png
+            done
+            tar cf $archive $part_prefix*.png
+            shred -zu $part_prefix*
+            ;;
+        restore)
+            tmp=$(tempfile)
+            tar xf $archive
+            for key_file in $part_prefix*.png; do
+                dmtxread $key_file >> $tmp
+                shred -zu $key_file
+            done
+            cat $tmp | paperkey --pubring $gpg_home/pubring.gpg | $GPG --import -
+            shred -zu $tmp
+            ;;
+        *)
+            fail "invalid action $action"
+            ;;
+    esac
+}
+
+
+
+key_id=
+gpg_home=
+sec=
+pub=
+backup_dir=
+GPG=
+
+### argument parsing
+action="$1"
+if [[ "$action" != "create" && "$action" != "restore" ]]; then
+    fail "invalid action $action\n$usage"
+fi
+shift
+
+while [[ $# -gt 1 ]]
+do
+	arg="$1"
+	case $arg in
+		--gpg-home)
+            gpg_home="$(readlink -f $2)"
+			shift
+		;;
+        -h|--help)
+            echo "$usage" && exit 0
+        ;;
+		*)
+            fail "unknown option \"$arg\"\n$usage"
+		;;
+	esac
+	shift
+done
+
+### input arg checks
+key_id="$1"
+if [[ -z $key_id || $key_id =~ ^- ]]; then
+   fail "no key id provided"
+elif [[ ! -d $gpg_home ]]; then
+    if [[ -z $gpg_home ]]; then
+        gpg_home=$(readlink -f ~/.gnupg)
+	    echo "no gpg home provided, falling back to $gpg_home"
+    else
+        fail "$gpg_home does not exist"
+    fi
+fi
+
+sec=$key_id.sec
+pub=$key_id.pub
+backup_dir=$key_id-backup
+GPG="gpg --home=$gpg_home"
+
+### create backups
+case "$action" in
+    create)
+        ### check that we have secret key
+        $GPG --list-secret-key $key_id > /dev/null
+        [[ -d $backup_dir ]] || mkdir $backup_dir
+        cd $backup_dir
+        ### export public and private key
+        $GPG --export $key_id > $pub.key
+        $GPG --export-secret-key $key_id > $sec.key
+        ### export private key in paperkey txt and dmtx PNGs
+        paperkey_txt $action $sec
+        paperkey_dmtx $action $sec
+        ;;
+    restore)
+        [[ -d $backup_dir ]] || fail "no backup directory found"
+        cd $backup_dir
+        ### import public key
+        if [[ ! -f $pub.key ]]; then
+            echo "no public key backup, pulling key from pgp.mit.edu..."
+            $GPG --keyserver pgp.mit.edu --recv-key $key_id
+        else
+            $GPG --import $pub.key
+        fi
+        ### import private key
+        if [[ -f $sec.key ]]; then
+            # simplest just to import backup directly
+            $GPG --import $sec.key
+        elif [[ -f $sec.txt ]]; then
+            # import from paperkey text file
+            paperkey_txt $action $sec
+        elif [[ -f $sec.png.parts.tar ]]; then
+            # import paperkey + dmtx PNG
+            paperkey_dmtx $action $sec
+        else
+            fail "no secret key in backup"
+        fi
+        ;;
+    *)
+        fail "$usage"
+        ;;
+esac
