@@ -8,20 +8,20 @@ Xft.hintstyle:           3
 Xcursor.theme: Orange-Cursor
 
 ! urxvt config
-urxvt.font:              xft:inconsolata:pixelsize=15
-urxvt.termName:          rxvt
-urxvt.scrollBar:         false
-urxvt.imLocale:          en_GB.UTF-8
-urxvt.loginShell:        true
-urxvt.saveLines:         512
-urxvt.geometry:          190x70
-urxvt.inheritPixmap:     false
-urxvt.shading:           30
-urxvt.xftAntialias:      true
-urxvt.jumpScroll:        true
-urxvt.tintColor:         white
-urxvt.internalBorder:    0
-urxvt.cursorBlink:       false
-urxvt.urgentOnBell:      true
-urxvt.intensityStyles:   false
-urxvt.inputMethod:       xim
+URxvt.font:              xft:inconsolata:pixelsize=15
+URxvt.termName:          rxvt
+URxvt.scrollBar:         false
+URxvt.imLocale:          en_GB.UTF-8
+URxvt.loginShell:        true
+URxvt.saveLines:         512
+URxvt.geometry:          190x70
+URxvt.inheritPixmap:     false
+URxvt.shading:           30
+URxvt.xftAntialias:      true
+URxvt.jumpScroll:        true
+URxvt.tintColor:         white
+URxvt.internalBorder:    0
+URxvt.cursorBlink:       false
+URxvt.urgentOnBell:      true
+URxvt.intensityStyles:   false
+URxvt.inputMethod:       xim
