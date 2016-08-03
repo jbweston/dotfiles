@@ -9,10 +9,17 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'git://github.com/altercation/vim-colors-solarized.git'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-speeddating'
 Plugin 'jceb/vim-orgmode'
 Bundle 'lepture/vim-jinja'
+Plugin 'ledger/vim-ledger'
+""" snipmate plugins
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -35,8 +42,9 @@ set visualbell
 " --Syntax--
 syntax enable
 " most of the time we are editing HTML k
-au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja 
-au BufRead,BufNewFile *.svg        set filetype=xml
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set filetype=jinja
+au BufRead,BufNewFile *.svg set filetype=xml
+au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
 
 " --Remapping keys--
 " remap <esc> key with `jk` combination
