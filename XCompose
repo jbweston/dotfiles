@@ -58,8 +58,12 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <m> <p>    : "∏"   U220F    # product
 <Multi_key> <m> <n>    : "∇"   U2207    # nabla
 <Multi_key> <m> <x>    : "⨯"   U2A2F    # cross product
+
 # arrows
 <Multi_key> <a> <l>    : "←"   U2190    # left arrow
 <Multi_key> <a> <u>    : "↑"   U2191    # up arrow
 <Multi_key> <a> <r>    : "→"   U2192    # right arrow
 <Multi_key> <a> <d>    : "↓"   U2193    # down arrow
+
+# currency
+<Multi_key> <e> <$>    : "€"   U20AC    # euro symbol
