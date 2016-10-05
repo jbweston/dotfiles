@@ -1,4 +1,4 @@
 set sidebar_width = 30
 set sidebar_visible = yes
-set sidebar_folderindent = yes
-set sidebar_shortpath = yes
+set sidebar_short_path = yes
+set sidebar_folder_indent = yes
