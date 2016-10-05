@@ -24,3 +24,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 GTK_IM_MODULE=xim
+# logfile for `t` command based on year/month
+export TIMELOG="$HOME/work/timelog/$(date +%Y/%m).ldg"
+[[ ! -d ${TIMELOG%/**} ]] && mkdir -p ${TIMELOG%/**}
+[[ ! -f "$TIMELOG" ]] && touch $TIMELOG

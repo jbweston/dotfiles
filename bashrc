@@ -52,7 +52,3 @@ export EDITOR=vim
 export TERMINAL=urxvt
 export terminal=urxvt
 export LC_ALL=en_GB.UTF-8
-# logfile for `t` command based on year/month
-export TIMELOG="$HOME/work/timelog/$(date +%Y/%m).ldg"
-[[ ! -d ${TIMELOG%/**} ]] && mkdir -p ${TIMELOG%/**}
-[[ ! -f "$TIMELOG" ]] && touch $TIMELOG
