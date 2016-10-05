@@ -1,4 +1,7 @@
 mutt/passwd
+mutt/mailcap
 vim/bundle/*
 vim/.netrwhist
 newsbeuter/*
+*.pyc
+*.swp

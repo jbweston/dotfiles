@@ -24,11 +24,11 @@ function remove {
 function link {
     local from_file="$1"
     local to_file="$2"
-    if [[ -e $to_file ]] ; then
-        if [[ ! -L $to_file || $(readlink -f $from_file) !=  $from_file ]] ; then
-            ask "$to_file exists, remove $to_file and link $from_file instead?"
-            [[ $? == 0 ]] && remove $to_file || continue
-        fi
+    if [[ -L $to_file && $(readlink -f $from_file) == $from_file ]] ; then
+        return 0
+    elif [[ -e $to_file ]] ; then
+        ask "$to_file exists, remove $to_file and link $from_file instead?"
+        [[ $? == 0 ]] && remove $to_file || return 0
     fi
     echo -n "linking $from_file --> $to_file ... "
     ln -s $from_file $to_file 2>/dev/null
