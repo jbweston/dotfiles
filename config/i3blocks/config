@@ -1,0 +1,10 @@
+command=~/.config/i3blocks/scripts/$BLOCK_NAME
+interval=1
+
+[timelog]
+[battery]
+interval=60
+[openvpn]
+[wifi]
+interval=2
+[datetime]

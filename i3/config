@@ -11,10 +11,6 @@
 # use Alt as the modifier key
 set $mod Mod1
 
-# font for window titles. ISO 10646 = Unicode
-#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango: Myndraine 10
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -162,9 +158,9 @@ bar {
     }
     #mode hide
     position top
-    status_command i3status
+    status_command i3blocks
     modifier Mod5
-    font pango: GNU Unifont 10
+    font pango: FontAwesome, inconsolata 12
 }
 
 # coloration      border  backgr. text   indicator
