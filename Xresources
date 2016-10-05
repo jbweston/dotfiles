@@ -6,7 +6,7 @@ Xft.hintstyle:           3
 #include ".Xresources.d/solarized_dark"
 
 ! urxvt config
-URxvt.font:              xft:inconsolata:pixelsize=15
+URxvt.font:              xft:InconsolataForPowerline Nerd Font:pixelsize=15
 URxvt.termName:          rxvt
 URxvt.scrollBar:         false
 URxvt.imLocale:          en_US.UTF-8
