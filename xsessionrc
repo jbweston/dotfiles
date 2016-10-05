@@ -1,4 +1,3 @@
 xset -b
 export GTK_IM_MODULE=xim
-setxkbmap -layout gb -option ctrl:nocaps -option compose:menu
 sh ~/.fehbg &  # set background
