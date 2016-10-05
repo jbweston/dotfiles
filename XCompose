@@ -64,6 +64,3 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <a> <u>    : "↑"   U2191    # up arrow
 <Multi_key> <a> <r>    : "→"   U2192    # right arrow
 <Multi_key> <a> <d>    : "↓"   U2193    # down arrow
-
-# currency
-<Multi_key> <e> <$>    : "€"   U20AC    # euro symbol
