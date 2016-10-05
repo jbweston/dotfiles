@@ -33,7 +33,7 @@ bindsym $mod+o exec urxvt -name scratchpad -e bash --login -c offlineimap
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 # lock screen
-bindsym Ctrl+$mod+l exec i3lock -i /home/jbw/Pictures/background.png
+bindsym Ctrl+$mod+l exec /home/jbw/.local/bin/i3lock.sh
 
 
 ########################
