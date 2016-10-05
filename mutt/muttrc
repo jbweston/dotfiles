@@ -8,8 +8,8 @@ set certificate_file    = ~/.mutt/certificates   # where to store certs
 
 ## main options ##
 set mbox_type           = Maildir                # mailbox type
-set folder              = ~/Mail                 # mailbox location
-set spoolfile           = "+JBW/INBOX"           # default inbox
+set folder              = ~/mail                 # mailbox location
+set spoolfile           = "+GMail/INBOX"           # default inbox
 
 mailboxes +JBW/INBOX +JBW/INBOX.kwant-gitlab
 mailboxes +GMail/INBOX +GMail/dev.kwant-mailinglist +GMail/family.parents

@@ -13,11 +13,11 @@ remoterepository = JBW-Remote
 
 [Repository GMail-Local]
 type = Maildir
-localfolders = ~/Mail/GMail
+localfolders = ~/mail/GMail
 
 [Repository JBW-Local]
 type = Maildir
-localfolders = ~/Mail/JBW
+localfolders = ~/mail/JBW
 
 [Repository GMail-Remote]
 type = Gmail
