@@ -44,16 +44,20 @@ do
     link "$from_file" "$to_file"
 done
 
+to_dir=$HOME/.config
+[[ -d "$to_dir" ]] || mkdir -p "$to_dir"
 for file in $(ls config)
 do
-    to_file=$HOME/.config/$file
+    to_file=$to_dir/$file
     from_file=$(pwd)/config/$file
     link "$from_file" "$to_file"
 done
 
+to_dir=$HOME/.local/bin
+[[ -d "$to_dir" ]] || mkdir -p "$to_dir"
 for file in $(ls scripts)
 do
-    to_file=$HOME/.local/bin/$file
+    to_file=$to_dir/$file
     from_file=$(pwd)/scripts/$file
     link "$from_file" "$to_file"
 done
