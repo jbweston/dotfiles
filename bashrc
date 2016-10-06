@@ -42,12 +42,17 @@ bldblu='\[\e[1;34m\]' # Blue
 bldpur='\[\e[1;35m\]' # Purple
 bldcyn='\[\e[1;36m\]' # Cyan
 bldwht='\[\e[1;37m\]' # White
-txtbld='\[\e[5m\]'    # Text vold
+txtbld='\[\e[5m\]'    # Text bold
 txtrst='\[\e[0m\]'    # Text Reset
 
 # environment variables
+prompt="$"
+if [[ "$(whoami)" == "root" ]]; then
+   usercolour="${bldred}"
+   prompt="#"
+fi
 
-export PS1="${txtrst}\u@${bldcyn}\h ${bldblu}\W ${bldred}\$(parse_git_branch) ${txtrst}$ "
+export PS1="${txtrst}${usercolour}\u${txtrst}@${bldcyn}\h ${bldblu}\W ${bldred}\$(parse_git_branch) ${txtrst}${prompt} "
 export EDITOR=vim
 export TERMINAL=urxvt
 export terminal=urxvt
