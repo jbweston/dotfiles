@@ -23,7 +23,9 @@ eval $(keychain --agents gpg,ssh --eval 2>/dev/null)
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
-GTK_IM_MODULE=xim
+
+export GTK_IM_MODULE=xim
+export XDG_CONFIG_HOME=$HOME/.config
 # logfile for `t` command based on year/month
 export TIMELOG="$HOME/work/timelog/$(date +%Y/%m).ldg"
 [[ ! -d ${TIMELOG%/**} ]] && mkdir -p ${TIMELOG%/**}
