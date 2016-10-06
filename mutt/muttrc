@@ -11,8 +11,9 @@ set mbox_type           = Maildir                # mailbox type
 set folder              = ~/mail                 # mailbox location
 set spoolfile           = "+GMail/INBOX"           # default inbox
 
-mailboxes +JBW/INBOX +JBW/INBOX.kwant-gitlab
+mailboxes +TUDelft/INBOX +TUDelft/INBOX.admin-qutech +TUDelft/INBOX.quantumtinkerer
 mailboxes +GMail/INBOX +GMail/dev.kwant-mailinglist +GMail/family.parents
+mailboxes +JBW/INBOX +JBW/INBOX.kwant-gitlab
 
 
 ## other config ##
@@ -24,6 +25,7 @@ source ~/.mutt/sidebar.rc        # configure sidebar
 
 folder-hook JBW/* source ~/.mutt/jbw.muttrc
 folder-hook GMail/* source ~/.mutt/gmail.muttrc
+folder-hook TUDelft/* source ~/.mutt/tudelft.muttrc
 
 
 ## Bindings in the index view  ##

@@ -10,29 +10,34 @@ YELLOW="#FFF600"
 #echo "#FFAE00"
 RED="#FF0000"
 
-if [[ "$BATTERY" -ge "80" ]]; then
-    SYMBOL=
-    COLOR=$GREEN
-elif [[ "$BATTERY" -ge "60" ]]; then
-    SYMBOL=
-    COLOR=$GREEN
-elif [[ "$BATTERY" -ge "40" ]]; then
-    SYMBOL=
-    COLOR=$GREEN
-elif [[ "$BATTERY" -ge "20" ]]; then
-    SYMBOL=
-    COLOR=$YELLOW
-elif [[ "$BATTERY" -ge "10" ]]; then
-    SYMBOL=
-    COLOR=$YELLOW
-else [[ "$BATTERY" -ge "5" ]]
-    SYMBOL=
-    COLOR=$RED
-fi
 
 if [[ "$STATE" == "Charging" ]]; then
     SYMBOL=
+elif [[ "$STATE" == "Discharging" ]]; then
+    if [[ "$BATTERY" -ge "80" ]]; then
+        SYMBOL=
+        COLOR=$GREEN
+    elif [[ "$BATTERY" -ge "60" ]]; then
+        SYMBOL=
+        COLOR=$GREEN
+    elif [[ "$BATTERY" -ge "40" ]]; then
+        SYMBOL=
+        COLOR=$GREEN
+    elif [[ "$BATTERY" -ge "20" ]]; then
+        SYMBOL=
+        COLOR=$YELLOW
+    elif [[ "$BATTERY" -ge "10" ]]; then
+        SYMBOL=
+        COLOR=$YELLOW
+    else [[ "$BATTERY" -ge "5" ]]
+        SYMBOL=
+        COLOR=$RED
+    fi
+elif [[ "$STATE" == "Full" ]]; then
+        SYMBOL=
+        COLOR=$GREEN
 fi
+
 
 echo $SYMBOL
 echo $SYMBOL
