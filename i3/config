@@ -8,12 +8,10 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+font pango: inconsolata
+
 # use Alt as the modifier key
 set $mod Mod1
-
-# font for window titles. ISO 10646 = Unicode
-#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango: Myndraine 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -26,7 +24,7 @@ bindsym $mod+Return exec urxvt
 # start some terminal-based utilities
 bindsym $mod+m exec urxvt -name mutt -e mutt
 bindsym $mod+n exec urxvt -e newsbeuter
-bindsym $mod+r exec urxvt -e ranger
+bindsym $mod+r exec urxvt -e bash --login -c ranger
 bindsym $mod+i exec urxvt -e weechat
 # fetch mail
 bindsym $mod+o exec urxvt -name scratchpad -e bash --login -c offlineimap
