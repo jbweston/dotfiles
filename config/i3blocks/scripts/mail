@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import subprocess as sp
+
+mailcheck = ['mailcheck', '-c']
+mailboxes = str(sp.check_output(mailcheck), 'utf8').split('\n')[:-1]
+
+messages = []
+for line in mailboxes:
+    line = line.split()
+    nmessages = line[2]
+    box = line[-1].split('/')[-2]
+    messages.append('{}({})'.format(box, nmessages))
+
+if messages:
+    print("", ','.join(messages))
+    print("", ','.join(messages))
