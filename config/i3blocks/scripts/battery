@@ -5,37 +5,37 @@ BATTERY=${BATTERY::-2}
 STATE=$(acpi | awk '{print $3}')
 STATE=${STATE::-1}
 
-GREEN="#00FF00"
-YELLOW="#FFF600"
-#echo "#FFAE00"
-RED="#FF0000"
+GREEN=\#859900
+YELLOW=\#b58900
+ORANGE=\#cb4b16
+RED=\#dc322f
 
+
+if [[ "$BATTERY" -ge "80" ]]; then
+    SYMBOL=
+    COLOR=$GREEN
+elif [[ "$BATTERY" -ge "60" ]]; then
+    SYMBOL=
+    COLOR=$GREEN
+elif [[ "$BATTERY" -ge "40" ]]; then
+    SYMBOL=
+    COLOR=$YELLOW
+elif [[ "$BATTERY" -ge "20" ]]; then
+    SYMBOL=
+    COLOR=$YELLOW
+elif [[ "$BATTERY" -ge "10" ]]; then
+    SYMBOL=
+    COLOR=$ORANGE
+else [[ "$BATTERY" -ge "5" ]]
+    SYMBOL=
+    COLOR=$RED
+fi
 
 if [[ "$STATE" == "Charging" ]]; then
     SYMBOL=
-elif [[ "$STATE" == "Discharging" ]]; then
-    if [[ "$BATTERY" -ge "80" ]]; then
-        SYMBOL=
-        COLOR=$GREEN
-    elif [[ "$BATTERY" -ge "60" ]]; then
-        SYMBOL=
-        COLOR=$GREEN
-    elif [[ "$BATTERY" -ge "40" ]]; then
-        SYMBOL=
-        COLOR=$GREEN
-    elif [[ "$BATTERY" -ge "20" ]]; then
-        SYMBOL=
-        COLOR=$YELLOW
-    elif [[ "$BATTERY" -ge "10" ]]; then
-        SYMBOL=
-        COLOR=$YELLOW
-    else [[ "$BATTERY" -ge "5" ]]
-        SYMBOL=
-        COLOR=$RED
-    fi
 elif [[ "$STATE" == "Full" ]]; then
-        SYMBOL=
-        COLOR=$GREEN
+    SYMBOL=
+    COLOR=$GREEN
 fi
 
 
