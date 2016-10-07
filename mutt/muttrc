@@ -31,9 +31,10 @@ folder-hook TUDelft/* source ~/.mutt/tudelft.muttrc
 ## Bindings in the index view  ##
 bind index gg           first-entry
 bind index G            last-entry
-bind index,pager K            sidebar-prev
-bind index,pager J            sidebar-next
-bind index,pager O            sidebar-open
+bind index,pager K      sidebar-prev
+bind index,pager J      sidebar-next
+bind index,pager O      sidebar-open
+macro index,pager X     "<pipe-message>ripmime -i - -d "    "save all attachments"
 macro index gk          "<change-folder> =JBW/INBOX<enter>"   "go to Inbox"
 macro index gj          "<change-folder> =GMail/INBOX<enter>" "go to Gmail inbox"
 bind index -            collapse-thread
