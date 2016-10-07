@@ -26,6 +26,11 @@ fi
 
 export GTK_IM_MODULE=xim
 export XDG_CONFIG_HOME=$HOME/.config
+export EDITOR=vim
+export TERMINAL=urxvt
+export PAGER=less
+export LC_ALL=en_GB.UTF-8
+export terminal=$TERMINAL
 # logfile for `t` command based on year/month
 export TIMELOG="$HOME/work/timelog/$(date +%Y/%m).ldg"
 [[ ! -d ${TIMELOG%/**} ]] && mkdir -p ${TIMELOG%/**}

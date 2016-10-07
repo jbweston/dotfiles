@@ -53,8 +53,3 @@ if [[ "$(whoami)" == "root" ]]; then
 fi
 
 export PS1="${txtrst}${usercolour}\u${txtrst}@${bldcyn}\h ${bldblu}\W ${bldred}\$(parse_git_branch) ${txtrst}${prompt} "
-export EDITOR=vim
-export TERMINAL=urxvt
-export PAGER=less
-export LC_ALL=en_GB.UTF-8
-export terminal=$TERMINAL
