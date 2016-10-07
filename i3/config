@@ -22,12 +22,12 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec urxvt
 # start some terminal-based utilities
-bindsym $mod+m exec urxvt -name mutt -e mutt
+bindsym $mod+m exec urxvt -name mutt -e bash -l -c mutt
 bindsym $mod+n exec urxvt -e newsbeuter
-bindsym $mod+r exec urxvt -e bash --login -c ranger
+bindsym $mod+r exec urxvt -e bash -l -c ranger
 bindsym $mod+i exec urxvt -e weechat
 # fetch mail
-bindsym $mod+o exec urxvt -name scratchpad -e bash --login -c offlineimap
+bindsym $mod+o exec urxvt -name scratchpad -e bash -l -c offlineimap
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 # lock screen
