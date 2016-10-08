@@ -34,6 +34,8 @@ bindsym $mod+d exec dmenu_run
 bindsym Ctrl+$mod+l exec /home/jbw/.local/bin/i3lock.sh
 # switch screens
 bindsym Ctrl+$mod+space exec /home/jbw/.local/bin/switch-screens
+# assign paste from PRIMARY
+bindsym Ctrl+Insert exec xsel -po | xsel -bi |  xdotool click 2
 
 
 ########################
