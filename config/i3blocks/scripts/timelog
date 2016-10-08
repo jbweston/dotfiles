@@ -7,5 +7,7 @@ PROJECT=$(t cur)
 ELAPSED=$(t hours $(t cur) | awk '{print $1}')
 TOTAL=$(t bal $(t cur) | awk '{print $1}')
 
-echo " ($ELAPSED) $PROJECT"
-echo " ($ELAPSED) $PROJECT"
+MSG=" $PROJECT ($ELAPSED)"
+
+echo $MSG
+echo $MSG

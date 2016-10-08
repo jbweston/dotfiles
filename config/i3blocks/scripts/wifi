@@ -34,7 +34,7 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 echo  # full text
 echo  # short text
 
-GREEN=\#859900
+GREEN=\#2aa198
 YELLOW=\#b58900
 ORANGE=\#cb4b16
 RED=\#dc322f

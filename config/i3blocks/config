@@ -1,11 +1,12 @@
 command=~/.config/i3blocks/scripts/$BLOCK_NAME
-interval=5
+interval=1
 
 [timelog]
 [mail]
 [battery]
 interval=60
 [openvpn]
+interval=5
 [wifi]
+interval=5
 [datetime]
-interval=1

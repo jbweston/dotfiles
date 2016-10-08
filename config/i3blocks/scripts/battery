@@ -5,7 +5,7 @@ BATTERY=${BATTERY::-2}
 STATE=$(acpi | awk '{print $3}')
 STATE=${STATE::-1}
 
-GREEN=\#859900
+GREEN=\#2aa198
 YELLOW=\#b58900
 ORANGE=\#cb4b16
 RED=\#dc322f
