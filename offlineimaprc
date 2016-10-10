@@ -1,6 +1,6 @@
 [general]
 ui = ttyui
-accounts = GMail, JBW
+accounts = GMail, JBW, TUDelft
 pythonfile = ~/.mutt/get_pass.py
 
 [Account GMail]
@@ -11,13 +11,21 @@ remoterepository = GMail-Remote
 localrepository = JBW-Local
 remoterepository = JBW-Remote
 
+[Account TUDelft]
+localrepository = TUDelft-Local
+remoterepository = TUDelft-Remote
+
 [Repository GMail-Local]
 type = Maildir
-localfolders = ~/mail/GMail
+localfolders = ~/priv/mail/GMail
 
 [Repository JBW-Local]
 type = Maildir
-localfolders = ~/mail/JBW
+localfolders = ~/priv/mail/JBW
+
+[Repository TUDelft-Local]
+type = Maildir
+localfolders = ~/work/mail/TUDelft
 
 [Repository GMail-Remote]
 type = Gmail
@@ -38,6 +46,7 @@ remotepasseval = get_pass("email/jbw")
 realdelete = no
 maxconnections = 3
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
 [Repository TUDelft-Remote]
 type = IMAP
 ssl = yes
