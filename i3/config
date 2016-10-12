@@ -36,6 +36,9 @@ bindsym Ctrl+$mod+l exec /home/jbw/.local/bin/i3lock.sh
 bindsym Ctrl+$mod+space exec /home/jbw/.local/bin/switch-screens
 # assign paste from PRIMARY
 bindsym Ctrl+Insert exec xsel -po | xsel -bi |  xdotool click 2
+# move workspaces between screens
+bindsym $mod+Mod4+h move workspace to output left
+bindsym $mod+Mod4+l move workspace to output right
 
 
 ########################
