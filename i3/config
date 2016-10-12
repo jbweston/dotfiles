@@ -198,6 +198,7 @@ gaps outer 0
 ## autostart ##
 ###############
 exec --no-startup-id xset -b
+exec --no-startup-id xrdb ~/.Xresources
 exec --no-startup-id compton --config ~/.config/compton.conf -b
 exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id conky -c ~/.i3/conky.rc
