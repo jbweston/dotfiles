@@ -11,8 +11,9 @@ set mbox_type           = Maildir                # mailbox type
 set folder              = ~/Mail                 # mailbox location
 set spoolfile           = "+JBW/INBOX"           # default inbox
 
+mailboxes +TUDelft/INBOX +TUDelft/INBOX.admin-qutech +TUDelft/INBOX.quantumtinkerer
+mailboxes +GMail/INBOX +GMail/dev.kwant-mailinglist +GMail/dev.kwant-devel +GMail/family.parents
 mailboxes +JBW/INBOX +JBW/INBOX.kwant-gitlab
-mailboxes +GMail/INBOX +GMail/dev.kwant-mailinglist +GMail/family.parents
 
 
 ## other config ##
