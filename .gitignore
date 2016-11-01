@@ -3,5 +3,6 @@ mutt/mailcap
 vim/bundle/*
 vim/.netrwhist
 newsbeuter/*
+config/vdirsyncer/*
 *.pyc
 *.swp

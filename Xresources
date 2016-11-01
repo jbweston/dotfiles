@@ -23,3 +23,6 @@ URxvt.cursorBlink:       false
 URxvt.urgentOnBell:      true
 URxvt.intensityStyles:   false
 URxvt.inputMethod:       xim
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
