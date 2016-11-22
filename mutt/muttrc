@@ -12,7 +12,7 @@ set folder              = ~/.mail                # mailbox location
 set spoolfile           = "+GMail/INBOX"          # default inbox
 
 mailboxes +TUDelft/INBOX +TUDelft/INBOX.admin-qutech +TUDelft/INBOX.quantumtinkerer
-mailboxes +GMail/INBOX +GMail/dev.kwant-mailinglist +GMail/dev.kwant-devel +GMail/family.parents
+mailboxes +GMail/INBOX +GMail/dev.kwant-mailinglist +GMail/dev.kwant-devel +GMail/dev.kwant-gitlab +GMail/family.parents
 mailboxes +JBW/INBOX +JBW/INBOX.kwant-gitlab
 
 
