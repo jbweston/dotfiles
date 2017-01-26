@@ -1,0 +1,46 @@
+#!/usr/bin/env python2
+# -*-Python-*-
+
+from __future__ import division, print_function
+import os
+import stat
+import subprocess
+import argparse
+
+# Get arguments
+parser = argparse.ArgumentParser(description='Publish a file.')
+parser.add_argument('fname', type=str)
+parser.add_argument('-t', '--time', type=str, required=False, default=None)
+parser.add_argument('-d', '--direct', action='store_true')
+parser.add_argument('-w', '--webroot', type=str, default='josephweston')
+parser.add_argument('-p', '--path', type=str, default='uploads')
+args = parser.parse_args()
+fname = os.path.abspath(os.path.expanduser(args.fname))
+rpath = '{}/{}'.format(args.webroot, args.path)
+rname = '{}/{}'.format(rpath, fname)
+
+# Give others read permission
+perm = os.stat(fname).st_mode
+os.chmod(fname, perm | stat.S_IRGRP | stat.S_IROTH)
+
+# Upload the file
+dest = 'web:{}/'.format(rpath)
+subprocess.call(['rsync', fname, dest])
+
+# Put a URL into clipboard
+url = 'josephweston.org/{}/{}'.format(args.path, os.path.basename(fname))
+if not fname.endswith('ipynb') or args.direct:
+    url = 'http://' + url
+else:
+    url = 'http://nbviewer.jupyter.org/url/' + url
+
+sub = subprocess.Popen('xclip -selection "primary"', shell=True,
+                       stdin=subprocess.PIPE)
+sub.communicate(input=url)
+
+# Set up delayed erasing
+if args.time is not None:
+    rmcommand = ('"nohup bash -c \'sleep {time} &&'
+                 ' rm {file}\' > /dev/null 2>&1 &"')
+    rmcommand = rmcommand.format(time=args.time, file=rname)
+    subprocess.call('ssh website ' + rmcommand, shell=True)

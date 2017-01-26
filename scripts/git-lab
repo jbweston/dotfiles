@@ -1,0 +1,109 @@
+#!/bin/bash
+
+
+### Globals
+
+remote=$1
+action=$2
+
+
+### Functions
+
+function help {
+cat >&2 << EOF
+    usage: git lab [remote] <subcommand>
+
+    subcommands: issues, merge-requests
+EOF
+}
+
+function get_api {
+    resp=$(curl -sf --header "$api_header" "$api_url/$1")
+    if [[ $? != 0 ]]; then
+        echo "remote '$remote' returned an error" >&2
+        exit 1
+    fi
+    echo "$resp" | jq -r "$2"
+}
+
+function get_project_id {
+    # try to get project ID from git config
+    local project_id=$(git config remote.$remote.project-id)
+    if [[ "$project_id" == "" ]]; then
+        project_id=$(fetch_project_id)
+    fi
+    git config remote.$remote.project-id "$project_id"
+    echo $project_id
+}
+
+function fetch_project_id {
+    local page=1
+    local resp="[]"
+    local jq_query="map(select(.path_with_namespace== \"$path\"))"
+
+    while [[ "$resp" == "[]" ]]; do
+        resp=$(get_api "projects/?page=$page" "$jq_query")
+        page=$((page + 1))
+    done
+    echo $resp | jq -r '.[0].id'
+}
+
+
+### Script
+
+if [[ "$remote" == "" ]]; then
+    help
+    exit 1
+fi
+
+if [[ "$action" == "" ]]; then
+    case "$remote" in
+        issues|merge-requests)
+            # set default remote
+            action="$remote"
+            remote=$(git config branch.master.remote)
+            if [[ "$remote" == "" ]]; then
+                echo "no default remote set" >&2
+                exit 1
+            fi
+            ;;
+        *)
+            help
+            exit 1
+            ;;
+    esac
+fi
+
+
+raw_url=$(git config remote.$remote.url)
+
+if [[ "$raw_url" == "" ]]; then
+    echo "remote '$remote' does not exist"
+    exit 1
+fi
+
+
+host_expr='s|.*://\([[:alnum:]_-]\+@\)\?\([^/]\+\).*$|\2|'
+path_expr='s|.*://\([[:alnum:]_-]\+@\)\?\([^/]\+\)/\([^.]*\).*$|\3|'
+host=$(echo $raw_url | sed -e "$host_expr")
+path=$(echo $raw_url | sed -e "$path_expr")
+api_url="https://$host/api/v3"
+api_header="PRIVATE-TOKEN: $(pass apps/gitlab-cli)"
+
+
+case $action in
+    issues)
+        project_id=$(get_project_id)
+        get_api projects/$project_id/issues?state=opened \
+                "map(\"\(.iid): \(.title)  (\(.author.name))\") | join(\"\n\")"
+        ;;
+    merge-requests)
+        project_id=$(get_project_id)
+        get_api projects/$project_id/merge_requests?state=opened \
+                "map(\"\(.iid): \(.title)  (\(.author.name))\") | join(\"\n\")"
+        ;;
+    *)
+        help
+        exit 1
+        ;;
+esac
