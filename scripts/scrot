@@ -1,0 +1,5 @@
+#!/bin/bash
+
+SCROT=/usr/bin/scrot
+
+$SCROT -e 'mv $f /tmp/' $*
