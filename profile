@@ -31,6 +31,7 @@ export TERMINAL=urxvt
 export PAGER=less
 export LC_ALL=en_GB.UTF-8
 export terminal=$TERMINAL
+export EMAIL="Joseph Weston <me@josephweston.org>"
 # logfile for `t` command based on year/month
 export TIMELOG="$HOME/work/timelog/$(date +%Y/%m).ldg"
 [[ ! -d ${TIMELOG%/**} ]] && mkdir -p ${TIMELOG%/**}
