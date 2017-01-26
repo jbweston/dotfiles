@@ -1,25 +1,52 @@
 [user]
-	name = Joseph Weston
-	email = joseph.weston08@gmail.com
+  name = Joseph Weston
+  email = joseph.weston08@gmail.com
 [core]
-	editor = vim
-    whitespace = trailing-space,space-before-tab
+  editor = vim
+  whitespace = trailing-space,space-before-tab
 [alias]
-  s = status
-  unstage = reset -- HEAD
+  # one-line log
+  l = log --all --oneline --decorate --graph
   last = log -1 HEAD
-  grep = ls-files | xargs grep
+
+  a = add
+  ap = add -p
+  c = commit --verbose
+  ca = commit -a --verbose
+  cm = commit -m
+  cam = commit -a -m
+  m = commit --amend --verbose
+  unstage = reset -- HEAD
+
+  d = diff
+  ds = diff --stat
+  dc = diff --staged
   wdiff = diff --color-words
   ldiff = difftool -y -t latex
+
+  s = status -s
+  co = checkout
+  cob = checkout -b
+
+  # list branches sorted by last modified
+  b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
+  grep = ls-files | xargs grep
+  mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
 [difftool.latex]
   cmd = latexdiff "$LOCAL" "$REMOTE"
 [sendemail]
-	smtpencryption = tls
-	smtpserverport = 587
-	smtpserver = smtp.gmail.com
-	smtpuser = joseph.weston08@gmail.com
+  smtpencryption = tls
+  smtpserverport = 587
+  smtpserver = smtp.gmail.com
+  smtpuser = joseph.weston08@gmail.com
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+  tool = vimdiff
+  conflictstyle = diff3
 [color]
-	ui = auto
+  ui = auto
+[tig]
+  mouse = yes
+  commit-order = default
+[tig "bind"]
+  generic = f @git fetch --all
