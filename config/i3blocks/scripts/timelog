@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source ~/.profile
+
+PROJECT=$(t cur)
+[[ -z "$PROJECT" ]] && exit
+ELAPSED=$(t hours $(t cur) | head -1 | awk '{print $1}')
+TOTAL=$(t bal $(t cur) | awk '{print $1}')
+
+MSG=" $PROJECT ($ELAPSED)"
+
+echo $MSG
+echo $MSG

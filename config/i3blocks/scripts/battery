@@ -1,0 +1,44 @@
+#!/bin/bash
+
+BATTERY=$(acpi | awk '{print $4}')
+BATTERY=${BATTERY::-2}
+STATE=$(acpi | awk '{print $3}')
+STATE=${STATE::-1}
+
+GREEN=\#2aa198
+YELLOW=\#b58900
+ORANGE=\#cb4b16
+RED=\#dc322f
+
+
+if [[ "$BATTERY" -ge "80" ]]; then
+    SYMBOL=
+    COLOR=$GREEN
+elif [[ "$BATTERY" -ge "60" ]]; then
+    SYMBOL=
+    COLOR=$GREEN
+elif [[ "$BATTERY" -ge "40" ]]; then
+    SYMBOL=
+    COLOR=$YELLOW
+elif [[ "$BATTERY" -ge "20" ]]; then
+    SYMBOL=
+    COLOR=$YELLOW
+elif [[ "$BATTERY" -ge "10" ]]; then
+    SYMBOL=
+    COLOR=$ORANGE
+else [[ "$BATTERY" -ge "5" ]]
+    SYMBOL=
+    COLOR=$RED
+fi
+
+if [[ "$STATE" == "Charging" ]]; then
+    SYMBOL=
+elif [[ "$STATE" == "Full" ]]; then
+    SYMBOL=
+    COLOR=$GREEN
+fi
+
+
+echo $SYMBOL
+echo $SYMBOL
+echo $COLOR
