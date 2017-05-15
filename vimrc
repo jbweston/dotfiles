@@ -14,11 +14,16 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'jceb/vim-orgmode'
 Bundle 'lepture/vim-jinja'
 Plugin 'ledger/vim-ledger'
+Plugin 'othree/html5.vim'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'vim-scripts/vim-stylus'
 """ snipmate plugins
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+""" pyflakes
+Plugin 'alfredodeza/khuno.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
