@@ -19,17 +19,20 @@ _t_do() {
 # Clock in to the given project
 # Clock in to the last project if no project is given
 _t_in() {
+  [ "$(_t_cur)" ] && exit 1  # already checked in
   [ ! "$1" ] && set -- "$@" "$(_t_last)"
   echo i `date '+%Y-%m-%d %H:%M:%S'` $* >>$timelog
 }
 
 # Clock out
 _t_out() {
+  [ ! "$(_t_cur)" ] && exit 1  # not checked in to a project
   echo o `date '+%Y-%m-%d %H:%M:%S'` $* >>$timelog
 }
 
 # switch projects
 _t_sw() {
+  [ ! "$(_t_cur)" ] && exit 1  # cannot switch if not checked in
   echo o `date '+%Y-%m-%d %H:%M:%S'` >>$timelog
   echo i `date '+%Y-%m-%d %H:%M:%S'` $* >>$timelog
 }
