@@ -29,7 +29,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=vim
 export TERMINAL=urxvt
 export PAGER=less
-export LC_ALL=en_GB.UTF-8
+export LC_ALL=en_US.UTF-8
 export terminal=$TERMINAL
 export EMAIL="Joseph Weston <me@josephweston.org>"
 # logfile for `t` command based on year/month
