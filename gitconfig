@@ -50,3 +50,5 @@
   commit-order = default
 [tig "bind"]
   generic = f @git fetch --all
+[rerere]
+	enabled = true

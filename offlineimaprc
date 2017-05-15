@@ -46,14 +46,4 @@ remotepasseval = get_pass("email/jbw")
 realdelete = no
 maxconnections = 3
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-
-[Repository TUDelft-Remote]
-type = IMAP
-ssl = yes
-remotehost = imap.tudelft.nl
-remoteuser = jweston
-remotepasseval = get_pass("email/tudelft")
-realdelete = no
-maxconnections = 3
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 folderfilter = lambda f: f.startswith('INBOX') or f in ['Drafts', 'Sent' 'Trash', 'Archive']

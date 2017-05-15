@@ -30,15 +30,12 @@ bindsym $mod+i exec urxvt -e weechat
 bindsym $mod+o exec urxvt -name scratchpad -e bash -l -c offlineimap
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
+# start passmenu -- a frontend to pass
+bindsym $mod+p exec passmenu --type
 # lock screen
 bindsym Ctrl+$mod+l exec /home/jbw/.local/bin/i3lock.sh
-# switch screens
-bindsym Ctrl+$mod+space exec /home/jbw/.local/bin/switch-screens
 # assign paste from PRIMARY
 bindsym Ctrl+Insert exec xsel -po | xsel -bi |  xdotool click 2
-# move workspaces between screens
-bindsym $mod+Mod4+h move workspace to output left
-bindsym $mod+Mod4+l move workspace to output right
 
 
 ########################
@@ -99,16 +96,16 @@ bindsym $mod+a focus parent
 bindsym $mod+c focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
