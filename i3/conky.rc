@@ -24,8 +24,8 @@ default_shade_color 000000
 default_outline_color 000000
 minimum_size 500
 maximum_width 500
-gap_x 1050
-gap_y 150
+gap_x 1250
+gap_y 180
 alignment top_left
 no_buffers yes
 uppercase no
