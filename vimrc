@@ -17,6 +17,7 @@ Plugin 'ledger/vim-ledger'
 Plugin 'othree/html5.vim'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'vim-scripts/vim-stylus'
+Plugin 'Olical/vim-enmasse'
 """ snipmate plugins
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
