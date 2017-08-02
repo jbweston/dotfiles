@@ -52,3 +52,5 @@
   generic = f @git fetch --all
 [rerere]
 	enabled = true
+[filter "trimWhitespace"]
+	clean = git stripspace
