@@ -16,6 +16,7 @@ alias l='ls -CF'
 alias notify='tput bel'
 alias tiga='tig --all'
 alias tigs='tig status'
+alias ledger='ledger -f /home/jbw/priv/finance/accounts/main.ldg --start-of-week=6 --sort date' #--historical --exchange €'
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
