@@ -17,6 +17,7 @@ Plugin 'ledger/vim-ledger'
 Plugin 'othree/html5.vim'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'vim-scripts/vim-stylus'
+Plugin 'Olical/vim-enmasse'
 """ snipmate plugins
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -58,6 +59,10 @@ cno jk <c-c>
 " remap colon with semicolon
 no ; :
 
+" make j and k behave sanely on wrapped lines
+nmap j gj
+nmap k gk
+
 " make 80th column stand out
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
@@ -74,8 +79,12 @@ colorscheme solarized
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
 
+" toggle highlighting all matches
+nnoremap <silent> <Space> :set hlsearch! hlsearch?<cr>
+highlight Search ctermfg=magenta
+
 " highlight the match in red...
-highlight WhiteOnRed  ctermbg=magenta
+highlight WhiteOnRed  ctermfg=yellow
 function! HLNext (blinktime)
     let [bufnum, lnum, col, off] = getpos('.')
     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
@@ -98,6 +107,15 @@ nnoremap <C-V>     v
 
 vnoremap    v   <C-V>
 vnoremap <C-V>     v
+
+let @r = '^cwyolo'
+" execute macro over visual range
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
 
 
 " syntax highlighting for diffs

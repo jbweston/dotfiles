@@ -5,8 +5,7 @@ interval=1
 [mail]
 [battery]
 interval=60
-[openvpn]
-interval=5
-[wifi]
-interval=5
+[network]
+interval=2
+markup=pango
 [datetime]

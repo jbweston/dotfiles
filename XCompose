@@ -52,6 +52,7 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 
 # Misc
 <Multi_key> <l> <l>    : "ł"   U0142    # l with stroke
+<Multi_key> <.> <.>    : "…"   U2026    # ellipsis
 
 # currency
 <Multi_key> <e> <5>    : "€"   U20AC    # euro
@@ -66,12 +67,15 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <m> <x>    : "⨯"   U2A2F    # cross product
 <Multi_key> <1> <=>    : "≠"   U2260    # not equal
 <Multi_key> <d> <d>    : "•"   U2022    # bullet
+<Multi_key> <m> <.>    : "∴"   U2234    # therefore
+<Multi_key> <m> <e>    : "∈"   U2208    # element of
 
 # arrows
 <Multi_key> <a> <h>    : "←"   U2190    # left arrow
 <Multi_key> <a> <k>    : "↑"   U2191    # up arrow
 <Multi_key> <a> <l>    : "→"   U2192    # right arrow
 <Multi_key> <a> <j>    : "↓"   U2193    # down arrow
+<Multi_key> <a> <d>    : "⇒"   U21D2    # Implies
 
 # check marks
 <Multi_key> <c> <c>    : "✔"   U2190    # check mark
