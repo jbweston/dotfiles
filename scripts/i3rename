@@ -1,0 +1,19 @@
+#!/bin/bash
+
+workspace_number=$(i3-msg -t get_workspaces | jq '.[] | select(.focused == true).num')
+new_name="${@:1}"
+
+if [[ workspace_number == -1 ]]; then
+    echo "invalid workspace" >&2
+    exit 1
+fi
+
+if [[ $new_name == "" ]]; then
+    full_name="$workspace_number"
+else
+    full_name="$workspace_number:$new_name"
+fi
+
+echo $full_name
+
+i3-msg "rename workspace to \"$full_name\""
