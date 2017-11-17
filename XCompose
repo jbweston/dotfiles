@@ -77,6 +77,13 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <a> <j>    : "↓"   U2193    # down arrow
 <Multi_key> <a> <d>    : "⇒"   U21D2    # Implies
 
+# double struck letters
+<Multi_key> <m> <r>    : "ℝ"   U211D    # Reals
+<Multi_key> <m> <c>    : "ℂ"   U2102    # Complex
+<Multi_key> <m> <q>    : "ℚ"   U211A    # Rational
+<Multi_key> <m> <n>    : "ℕ"   U2115    # Natural
+<Multi_key> <m> <z>    : "ℤ"   U2124    # Integer
+
 # check marks
 <Multi_key> <c> <c>    : "✔"   U2190    # check mark
 <Multi_key> <c> <x>    : "✘"   U2190    # cross mark
