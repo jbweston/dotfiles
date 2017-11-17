@@ -22,7 +22,6 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec urxvt -cd "$(xcwd)"
 # start some terminal-based utilities
-bindsym $mod+n exec urxvt -e newsbeuter
 bindsym $mod+r exec urxvt -cd "$(xcwd)" -e bash -l -c ranger
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
