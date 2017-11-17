@@ -26,7 +26,8 @@ fi
 
 export GTK_IM_MODULE=xim
 export XDG_CONFIG_HOME=$HOME/.config
-export EDITOR=vim
+export EDITOR=kak
+export GIT_EDITOR=kak
 export TERMINAL=urxvt
 export PAGER=less
 export LC_ALL=en_US.UTF-8
