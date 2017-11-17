@@ -24,6 +24,8 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+export PATH="/home/jbw/.local/miniconda/bin:$PATH"
+
 export GTK_IM_MODULE=xim
 export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=kak
