@@ -1,0 +1,41 @@
+map global normal '#' :comment-selection<ret>
+map global normal '<c-j>' '<a-j>'
+map global normal ':' ';'
+map global normal ';' ':'
+
+## Hooks ##
+
+# Add bracket highlighting
+hook global WinCreate .* %{addhl show_matching}
+
+# Use spaces only, not tabs
+hook -group TabExpander global InsertChar \t %{ exec -draft h@}
+
+# Add autowrap to 72 characters in git-commit
+hook -group GitWrapper global WinSetOption filetype=git-commit %{
+    set buffer autowrap_column 72
+    autowrap-enable
+
+    hook window WinSetOption filetype=(?!git-commit).* %{ autowrap-disable }
+}
+
+# Autostart Jedi on Python files
+hook -group PythonJediAutostart global WinSetOption filetype=python %{
+    jedi-enable-autocomplete
+}
+hook global WinSetOption filetype=(?!python).* %{
+    jedi-disable-autocomplete
+}
+
+# show all trailing whispaces red
+hook -group TrailingWhitespaces global WinCreate .* %{
+    addhl regex '\h+$' 0:default,red
+}
+
+##
+
+set global tabstop 4
+
+# yank and paste to clipboard
+map global normal Y '<a-|>xsel -b --input<ret>:echo -color Information "Yanked to clipboard"<ret>'
+map global normal P '<a-!>xsel -b -o<ret>:echo -color Information "Pasted from clipboard"<ret>'

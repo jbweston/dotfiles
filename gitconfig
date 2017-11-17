@@ -2,7 +2,7 @@
   name = Joseph Weston
   email = joseph.weston08@gmail.com
 [core]
-  editor = vim
+  editor = kak
   whitespace = trailing-space,space-before-tab
 [alias]
   # one-line log

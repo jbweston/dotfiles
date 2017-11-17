@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ -z "$@" ]]; then
+    echo "$(</dev/stdin)" | gpg --clearsign
+else
+    gpg --clearsign $@
+fi
