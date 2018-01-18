@@ -1,0 +1,2 @@
+DEVICE=${1:-/dev/sdb1}
+udisksctl mount -b $DEVICE
