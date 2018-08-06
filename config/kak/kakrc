@@ -5,8 +5,12 @@ map global normal ';' ':'
 
 ## Hooks ##
 
+hook global BufCreate .*[.](ldg) %{
+    set-option buffer filetype ledger
+}
+
 # Add bracket highlighting
-hook global WinCreate .* %{addhl show_matching}
+hook global WinCreate .* %{ addhl window show_matching }
 
 # Use spaces only, not tabs
 hook -group TabExpander global InsertChar \t %{ exec -draft h@}
@@ -27,15 +31,39 @@ hook global WinSetOption filetype=(?!python).* %{
     jedi-disable-autocomplete
 }
 
-# show all trailing whispaces red
-hook -group TrailingWhitespaces global WinCreate .* %{
-    addhl regex '\h+$' 0:default,red
+hook global WinSetOption filetype=python %{
+  set window tabstop 4
+  set window lintcmd 'flake8'
+  lint-enable
 }
+
+hook global WinSetOption filetype=ledger %{
+  set window tabstop 2
+}
+
+hook global WinSetOption filetype=javascript %{
+  set window tabstop 2
+  set window lintcmd 'standard -v'
+  lint-enable
+}
+
+
+# show all trailing whispaces red
+define-command -hidden show-trailing-whitespaces %{ try %{ add-highlighter window/ regex '\h+$' 0:default,red } } 
+define-command -hidden hide-trailing-whitespaces %{ try %{ remove-highlighter global/trailing-whitespaces } }
+hook global WinDisplay .*              show-trailing-whitespaces
+hook global ModeChange 'insert:normal' show-trailing-whitespaces
+hook global ModeChange 'normal:insert' hide-trailing-whitespaces
 
 ##
 
-set global tabstop 4
+set global tabstop 2
 
 # yank and paste to clipboard
-map global normal Y '<a-|>xsel -b --input<ret>:echo -color Information "Yanked to clipboard"<ret>'
-map global normal P '<a-!>xsel -b -o<ret>:echo -color Information "Pasted from clipboard"<ret>'
+map global normal Y '<a-|>xsel -b --input<ret>:echo Information "Yanked to clipboard"<ret>'
+map global normal P '<a-!>xsel -b -o<ret>:echo Information "Pasted from clipboard"<ret>'
+
+hook global InsertChar k %{ try %{
+  exec -draft hH <a-k>jk<ret> d
+  exec <esc>
+}}
