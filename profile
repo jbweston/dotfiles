@@ -39,3 +39,10 @@ export EMAIL="Joseph Weston <me@josephweston.org>"
 export TIMELOG="$HOME/work/timelog/$(date +%Y/%m).ldg"
 [[ ! -d ${TIMELOG%/**} ]] && mkdir -p ${TIMELOG%/**}
 [[ ! -f "$TIMELOG" ]] && touch $TIMELOG
+
+alias ghci="stack ghci"
+alias ghc="stack ghc"
+
+eval "$(stack --bash-completion-script stack)"
+
+. /home/jbw/.local/miniconda/etc/profile.d/conda.sh

@@ -1,6 +1,6 @@
 [user]
   name = Joseph Weston
-  email = joseph.weston08@gmail.com
+  email = joseph@weston.cloud
 [core]
   editor = kak
   whitespace = trailing-space,space-before-tab
@@ -35,11 +35,6 @@
   mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
 [difftool.latex]
   cmd = latexdiff "$LOCAL" "$REMOTE"
-[sendemail]
-  smtpencryption = tls
-  smtpserverport = 587
-  smtpserver = smtp.gmail.com
-  smtpuser = joseph.weston08@gmail.com
 [merge]
   tool = vimdiff
   conflictstyle = diff3

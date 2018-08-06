@@ -1,6 +1,5 @@
 message/rfc822; less %s; edit=${EDITOR-vi} %s; compose=${EDITOR-vi} %s; needsterminal;
 text/html; firefox %s
-text/calendar; $HOME/Scripts/ical_filter.pl; copiousoutput
 image/*; feh %s & ; copiousoutput
 video/*; mpv %s & ; copiousoutput
 audio/*; mpv %s & ; copiousoutput
