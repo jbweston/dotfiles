@@ -35,10 +35,6 @@ export PAGER=less
 export LC_ALL=en_US.UTF-8
 export terminal=$TERMINAL
 export EMAIL="Joseph Weston <me@josephweston.org>"
-# logfile for `t` command based on year/month
-export TIMELOG="$HOME/work/timelog/$(date +%Y/%m).ldg"
-[[ ! -d ${TIMELOG%/**} ]] && mkdir -p ${TIMELOG%/**}
-[[ ! -f "$TIMELOG" ]] && touch $TIMELOG
 
 alias ghci="stack ghci"
 alias ghc="stack ghc"
@@ -46,3 +42,7 @@ alias ghc="stack ghc"
 eval "$(stack --bash-completion-script stack)"
 
 . /home/jbw/.local/miniconda/etc/profile.d/conda.sh
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+export PATH="$HOME/.poetry/bin:$PATH"

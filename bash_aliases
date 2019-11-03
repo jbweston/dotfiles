@@ -24,3 +24,6 @@ parse_git_branch() {
 gpg-unknown-keys() {
     gpg --list-sigs | grep 'not found' | tr -s ' ' | rev | cut -d' ' -f6 | rev
 }
+
+alias t='topydo -t ~/work/todo/todo.txt -d ~/work/todo/done.txt'
+alias tc='t columns -l .config/todo.cfg'

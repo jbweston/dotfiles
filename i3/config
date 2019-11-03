@@ -10,6 +10,15 @@
 
 font pango: inconsolata
 
+# Set colours from Xresources
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+set_from_resource $detail i3wm.color4 #f0f0f0
+set_from_resource $urgent i3wm.color1 #f0f0f0
+set_from_resource $idle i3wm.color6 #f0f0f0
+set_from_resource $active i3wm.color3 #f0f0f0
+
+
 # use Alt as the modifier key
 set $mod Mod1
 
@@ -24,9 +33,9 @@ bindsym $mod+Return exec urxvt -cd "$(xcwd)"
 # start some terminal-based utilities
 bindsym $mod+r exec urxvt -cd "$(xcwd)" -e bash -l -c ranger
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
 # start passmenu -- a frontend to pass
-bindsym $mod+p exec passmenu --type
+bindsym $mod+p exec passmenu --type -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
 # lock screen
 bindsym Ctrl+$mod+l exec /home/jbw/.local/bin/i3lock.sh
 # switch screens
@@ -151,10 +160,10 @@ mode "resize" {
 # finds out, if available)
 bar {
     colors {
-      background #002b36
+      background $fg
       #background #000000
-      statusline #839496
-      separator  #586e75
+      statusline $detail #839496
+      separator  $detail #586e75
       focused_workspace  #586e75 #586e75 #002b36
       active_workspace   #586e75 #586e75 #002b36
       inactive_workspace #073642 #002b36 #839496
@@ -167,11 +176,20 @@ bar {
     font pango: FontAwesome, inconsolata 12
 }
 
+# class                 border  backgr. text indicator child_border
+client.focused          $active $bg     $fg  $detail       $active
+client.focused_inactive $bg     $bg     $fg  $detail       $bg
+client.unfocused        $bg     $bg     $fg  $detail       $bg
+client.urgent           $bg     $bg     $fg  $detail       $bg
+client.placeholder      $bg     $bg     $fg  $detail       $bg
+
+client.background       $bg
+
 # coloration      border  backgr. text   indicator
-client.focused          #002b36 #586e75 #fdf6e3 #ffffff
-client.focused_inactive #002b36 #073642 #839496 #073642
-client.unfocused        #002b36 #073642 #839496 #073642
-client.urgent           #002b36 #dc322f #fdf6e3 #002b36
+#client.focused          #002b36 #586e75 #fdf6e3 #ffffff
+#client.focused_inactive #002b36 #073642 #839496 #073642
+#client.unfocused        #002b36 #073642 #839496 #073642
+#client.urgent           #002b36 #dc322f #fdf6e3 #002b36
 
 new_window pixel 2
 
@@ -200,5 +218,4 @@ gaps outer 0
 exec --no-startup-id xset -b
 exec --no-startup-id xrdb ~/.Xresources
 exec --no-startup-id compton --config ~/.config/compton.conf -b --backend glx
-exec --no-startup-id sh ~/.fehbg
-exec --no-startup-id conky -c ~/.i3/conky.rc
+exec --no-startup-id wal -R

@@ -49,7 +49,7 @@ hook global WinSetOption filetype=javascript %{
 
 
 # show all trailing whispaces red
-define-command -hidden show-trailing-whitespaces %{ try %{ add-highlighter window/ regex '\h+$' 0:default,red } } 
+define-command -hidden show-trailing-whitespaces %{ try %{ add-highlighter window/ regex '\h+$' 0:default,red } }
 define-command -hidden hide-trailing-whitespaces %{ try %{ remove-highlighter global/trailing-whitespaces } }
 hook global WinDisplay .*              show-trailing-whitespaces
 hook global ModeChange 'insert:normal' show-trailing-whitespaces
@@ -67,3 +67,9 @@ hook global InsertChar k %{ try %{
   exec -draft hH <a-k>jk<ret> d
   exec <esc>
 }}
+
+define-command repl-connect %{ nop %sh{
+  (echo "$kak_selection" | clpr) 2>&1 >/dev/null </dev/null
+}}
+
+map global normal = '|fmt --width 79<ret>' -docstring "wrap to 79 columns"

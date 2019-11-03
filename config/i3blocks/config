@@ -8,4 +8,5 @@ interval=60
 [network]
 interval=2
 markup=pango
+[pomo]
 [datetime]
