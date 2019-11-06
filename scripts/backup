@@ -1,0 +1,10 @@
+#! /bin/bash
+
+location=$1
+name=$2
+
+. ~/.config/restic/env $location $name
+
+restic \
+    --exclude-file ~/.config/restic/exclude \
+    backup $name

@@ -1,0 +1,43 @@
+#! /bin/bash
+
+location=$1
+name=$2
+export RESTIC_PASSWORD=$(pass restic/broadway-backup)
+
+case "$name" in
+    "priv")
+        ;;
+    "work")
+        ;;
+    *)
+        echo "invalid backup name '$name'"
+        exit 1
+esac
+
+case "$location" in
+    "b2")
+        export B2_ACCOUNT_ID=$(pass backblaze/restic-broadway-key-id)
+        export B2_ACCOUNT_KEY=$(pass backblaze/restic-broadway-key)
+        export RESTIC_REPOSITORY="b2:broadway-backup:$name"
+        ;;
+    "surfdrive")
+        export MOUNTPOINT=~/remote/surfdrive
+        export RESTIC_REPOSITORY="$MOUNTPOINT/$name"
+
+        function unmount () {
+            umount $MOUNTPOINT 2>/dev/null
+        }
+
+        unmount
+        sudo mount \
+            -t davfs -o uid=1000 -o gid=1000 \
+            https://surfdrive.surf.nl/files/remote.php/nonshib-webdav/restic-backups \
+            $MOUNTPOINT
+        trap unmount EXIT
+        ;;
+    *)
+        echo "unknown backup location '$location'"
+        exit 1
+esac
+
+export PS1="[$location/$name] $PS1"
