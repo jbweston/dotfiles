@@ -28,12 +28,10 @@ case "$location" in
             umount $MOUNTPOINT 2>/dev/null
         }
 
-        unmount
-        sudo mount \
-            -t davfs -o uid=1000 -o gid=1000 \
-            https://surfdrive.surf.nl/files/remote.php/nonshib-webdav/restic-backups \
-            $MOUNTPOINT
-        trap unmount EXIT
+        if ! grep -qs $MOUNTPOINT /proc/mounts; then
+            mount $MOUNTPOINT  # There is an fstab entry so we can just specify the mountpoint
+            trap unmount EXIT
+        fi
         ;;
     *)
         echo "unknown backup location '$location'"

@@ -1,5 +1,5 @@
-jbw's dotfiles
-==============
+jbweston's dotfiles
+===================
 Just my dotfiles + install script
 
 Installing
@@ -18,19 +18,9 @@ you ever *do* move this repository, simply re-run `setup.sh`.
 
 Notes
 =====
-Password storage
-----------------
-`offlineimap` and `mutt` both require passwords to various mailboxes
-and imap accounts. Clearly the credentials are not stored in this git repository,
-and in general it is probably a bad idea to have unencrypted credentials stored in 
-files. I get around this by encrypting my passwords with gpg:
-
-    gpg -r D2C4E1B6 --encrypt > passwd.pgp
-
-I keep the passwords in `.mutt/passwd`, and have them  decrypted on-fly
-whenever I need them (I also use `gpg-agent` to avoid having to type my password
-every time, but use a sensible expiry time).
 
 Diff tool
 ---------
-The script `diff-dotfiles.sh` prints diffs between all the dotfiles in the repository and their counterparts in your home directory. You can specify specific files/directories to diff as command line arguments, or specify nothing to diff all files.
+The script `diff-dotfiles.sh` prints diffs between all the dotfiles in the repository
+and their counterparts in your home directory. You can specify specific files/directories
+to diff as command line arguments, or specify nothing to diff all files.

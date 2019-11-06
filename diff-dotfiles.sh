@@ -25,7 +25,7 @@ function print_diff {
 if [[ -z "$@" ]] ; then
     for file in $(ls $(for f in $IGNORE; do echo "-I $f" ; done))
     do
-        print_diff $file    
+        print_diff $file
     done
 else
     for file in "$@"
