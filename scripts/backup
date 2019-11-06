@@ -1,19 +1,10 @@
-#!/bin/bash
+#! /bin/bash
 
-function dt {
-    date +'%H:%M:%S'
-}
+location=$1
+name=$2
 
-notify-send "$(dt): starting backup '$*'"
+. ~/.config/restic/env $location $name
 
-if ping -c2 surfdrive.surf.nl > /dev/null 2>&1
-then
-    if duply $* backup
-    then
-        notify-send "$(dt): backup '$*' completed"
-    else
-        notify-send "$(dt): backup '$*' failed"
-    fi
-else
-    notify-send "$(dt): backup failed (could not ping surfdrive)"
-fi
+restic \
+    --exclude-file ~/.config/restic/exclude \
+    backup $name
