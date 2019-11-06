@@ -34,7 +34,7 @@ export TERMINAL=urxvt
 export PAGER=less
 export LC_ALL=en_US.UTF-8
 export terminal=$TERMINAL
-export EMAIL="Joseph Weston <me@josephweston.org>"
+export EMAIL="Joseph Weston <joseph@weston.cloud>"
 
 alias ghci="stack ghci"
 alias ghc="stack ghc"
