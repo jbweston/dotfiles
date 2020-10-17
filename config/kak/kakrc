@@ -3,6 +3,57 @@ map global normal '<c-j>' '<a-j>'
 map global normal ':' ';'
 map global normal ';' ':'
 
+## plug.kak ##
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+plug "ul/kak-lsp" do %{
+    cargo build --release --locked
+}
+
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp|haskell) %{
+    lsp-enable-window
+}
+
+plug "andreyorst/powerline.kak" config %{
+        powerline-start
+}
+
+
+plug 'delapouite/kakoune-buffers' %{
+  map global normal ^ q
+  map global normal <a-^> Q
+  map global normal q b
+  map global normal Q B
+  map global normal <a-q> <a-b>
+  map global normal <a-Q> <a-B>
+  map global normal b ': enter-buffers-mode<ret>' -docstring 'buffers'
+  map global normal B ': enter-user-mode -lock buffers<ret>' -docstring 'buffers (lock)'
+}
+
+plug 'delapouite/kakoune-i3' %{
+  # Suggested mapping
+  map global user 3 ': enter-user-mode i3<ret>' -docstring 'i3…'
+}
+
+plug "andreyorst/kaktree" config %{
+    hook global WinSetOption filetype=kaktree %{
+        remove-highlighter buffer/numbers
+        remove-highlighter buffer/matching
+        remove-highlighter buffer/wrap
+        remove-highlighter buffer/show-whitespaces
+    }
+    kaktree-enable
+}
+
+plug "lePerdu/kakboard" %{
+    hook global WinCreate .* %{ kakboard-enable }
+}
+
+add-highlighter global/ number-lines
+
+map global normal "'" :lsp-hover<ret> -docstring "LSP hover"
+
+
 ## Hooks ##
 
 hook global BufCreate .*[.](ldg) %{
@@ -10,7 +61,7 @@ hook global BufCreate .*[.](ldg) %{
 }
 
 # Add bracket highlighting
-hook global WinCreate .* %{ addhl window show_matching }
+# hook global WinCreate .* %{ addhl window show_matching }
 
 # Use spaces only, not tabs
 hook -group TabExpander global InsertChar \t %{ exec -draft h@}
@@ -24,12 +75,12 @@ hook -group GitWrapper global WinSetOption filetype=git-commit %{
 }
 
 # Autostart Jedi on Python files
-hook -group PythonJediAutostart global WinSetOption filetype=python %{
-    jedi-enable-autocomplete
-}
-hook global WinSetOption filetype=(?!python).* %{
-    jedi-disable-autocomplete
-}
+# hook -group PythonJediAutostart global WinSetOption filetype=python %{
+#     jedi-enable-autocomplete
+# }
+# hook global WinSetOption filetype=(?!python).* %{
+#     jedi-disable-autocomplete
+# }
 
 hook global WinSetOption filetype=python %{
   set window tabstop 4
@@ -47,7 +98,6 @@ hook global WinSetOption filetype=javascript %{
   lint-enable
 }
 
-
 # show all trailing whispaces red
 define-command -hidden show-trailing-whitespaces %{ try %{ add-highlighter window/ regex '\h+$' 0:default,red } }
 define-command -hidden hide-trailing-whitespaces %{ try %{ remove-highlighter global/trailing-whitespaces } }
@@ -59,10 +109,6 @@ hook global ModeChange 'normal:insert' hide-trailing-whitespaces
 
 set global tabstop 2
 
-# yank and paste to clipboard
-map global normal Y '<a-|>xsel -b --input<ret>:echo Information "Yanked to clipboard"<ret>'
-map global normal P '<a-!>xsel -b -o<ret>:echo Information "Pasted from clipboard"<ret>'
-
 hook global InsertChar k %{ try %{
   exec -draft hH <a-k>jk<ret> d
   exec <esc>
@@ -73,3 +119,7 @@ define-command repl-connect %{ nop %sh{
 }}
 
 map global normal = '|fmt --width 79<ret>' -docstring "wrap to 79 columns"
+
+hook global WinSetOption filetype=rust %{
+      set-option buffer formatcmd 'rustfmt'
+}
