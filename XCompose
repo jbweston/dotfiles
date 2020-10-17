@@ -57,6 +57,7 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 
 # currency
 <Multi_key> <e> <5>    : "€"   U20AC    # euro
+<Multi_key> <e> <4>    : "£"   U00A3    # GBP
 
 # Scientific
 <Multi_key> <m> <h>    : "ℏ"   U210F    # hbar
@@ -70,6 +71,8 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <d> <d>    : "•"   U2022    # bullet
 <Multi_key> <m> <.>    : "∴"   U2234    # therefore
 <Multi_key> <m> <e>    : "∈"   U2208    # element of
+<Multi_key> <m> <greater>    : "⟩"   U27E9    # right-angle bracket
+<Multi_key> <m> <less>    : "⟨"      U27E8    # left-angle bracket
 
 # arrows
 <Multi_key> <a> <h>    : "←"   U2190    # left arrow
