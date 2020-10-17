@@ -29,7 +29,7 @@ floating_modifier $mod
 ## program launchers ##
 #######################
 # start a terminal
-bindsym $mod+Return exec urxvt -cd "$(xcwd)"
+bindsym $mod+Return exec urxvt -cd "$(xcwd)" -e fish
 # start some terminal-based utilities
 bindsym $mod+r exec urxvt -cd "$(xcwd)" -e bash -l -c ranger
 # start dmenu (a program launcher)
@@ -217,5 +217,6 @@ gaps outer 0
 ###############
 exec --no-startup-id xset -b
 exec --no-startup-id xrdb ~/.Xresources
-exec --no-startup-id compton --config ~/.config/compton.conf -b --backend glx
+exec --no-startup-id compton --config ~/.config/compton.conf
+# exec --no-startup-id compton --config ~/.config/compton.conf -b --backend glx
 exec --no-startup-id wal -R

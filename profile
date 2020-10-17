@@ -43,6 +43,6 @@ eval "$(stack --bash-completion-script stack)"
 
 . /home/jbw/.local/miniconda/etc/profile.d/conda.sh
 
-export PATH="$HOME/.cargo/bin:$PATH"
-
 export PATH="$HOME/.poetry/bin:$PATH"
+
+export PATH="$HOME/.cargo/bin:$PATH"

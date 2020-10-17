@@ -45,7 +45,15 @@
   commit-order = default
 [tig "bind"]
   generic = f @git fetch --all
+[tig]
+  refresh-mode = periodic
+  refresh-interval = 1
 [rerere]
 	enabled = true
 [filter "trimWhitespace"]
 	clean = "sed -e 's/\\s\\+$//'"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
