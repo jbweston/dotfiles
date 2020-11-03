@@ -28,3 +28,5 @@ gpg-unknown-keys() {
 
 alias t='topydo -t ~/priv/admin/todo/todo.txt -d ~/priv/admin/todo/done.txt'
 alias tc='t columns -l .config/todo.cfg'
+
+alias uberspace='mosh -p 43600 uberspace'
