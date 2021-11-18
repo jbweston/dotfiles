@@ -1,7 +1,8 @@
-map global normal '#' :comment-selection<ret>
+map global normal '#' :comment-line<ret>
 map global normal '<c-j>' '<a-j>'
 map global normal ':' ';'
 map global normal ';' ':'
+map global normal 't' '<a-i>'
 
 ## plug.kak ##
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
@@ -10,12 +11,16 @@ plug "ul/kak-lsp" do %{
     cargo build --release --locked
 }
 
-hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp|haskell) %{
+hook global WinSetOption filetype=(clojure|rust|python|go|javascript|typescript|c|cpp|haskell) %{
     lsp-enable-window
 }
 
+hook global WinSetOption filetype=(clojure|lisp|scheme|racket) %{
+    parinfer-enable-window -smart
+}
+
 plug "andreyorst/powerline.kak" config %{
-        powerline-start
+    powerline-start
 }
 
 
@@ -47,6 +52,14 @@ plug "andreyorst/kaktree" config %{
 
 plug "lePerdu/kakboard" %{
     hook global WinCreate .* %{ kakboard-enable }
+}
+
+plug "eraserhd/parinfer-rust" do %{
+    cargo install --force --path .
+} config %{
+    hook global WinSetOption filetype=(clojure|lisp|scheme|racket) %{
+                parinfer-enable-window -smart
+    }
 }
 
 add-highlighter global/ number-lines
