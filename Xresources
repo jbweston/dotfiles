@@ -3,10 +3,13 @@ Xft.hinting:             true
 Xft.hintstyle:           3
 
 ! colorscheme
-#include ".Xresources.d/solarized_dark"
+! #include ".Xresources.d/solarized_dark"
 
 ! urxvt config
+! URxvt.font:              xft:Iosevka:pixelsize=15
+! URxvt.font:              xft:Inconsolata Nerd Font Mono:pixelsize=15
 URxvt.font:              xft:InconsolataForPowerline Nerd Font:pixelsize=15
+! URxvt.font:              xft:FantasqueSansMono-Regular:pixelsize=15
 URxvt.termName:          rxvt
 URxvt.scrollBar:         false
 URxvt.imLocale:          en_US.UTF-8
