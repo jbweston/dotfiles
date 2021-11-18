@@ -45,4 +45,4 @@ eval "$(stack --bash-completion-script stack)"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
