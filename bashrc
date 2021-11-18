@@ -53,3 +53,4 @@ if [[ "$(whoami)" == "root" ]]; then
 fi
 
 export PS1="${txtrst}${usercolour}\u${txtrst}@${bldcyn}\h ${bldblu}\W ${bldred}\$(parse_git_branch) ${txtrst}${prompt} "
+. "$HOME/.cargo/env"
