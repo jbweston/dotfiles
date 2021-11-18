@@ -209,6 +209,10 @@ bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
 gaps inner 15
 gaps outer 0
 
+smart_borders on
+# border_radius 4
+default_border none
+
 ###############
 ## autostart ##
 ###############
