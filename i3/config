@@ -19,8 +19,8 @@ set_from_resource $idle i3wm.color6 #f0f0f0
 set_from_resource $active i3wm.color3 #f0f0f0
 
 
-# use Alt as the modifier key
-set $mod Mod1
+# use Windows key as the modifier key
+set $mod Mod4
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
